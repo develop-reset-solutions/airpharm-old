@@ -35,8 +35,8 @@ function get_user_details($result){
 	 $_SESSION["usr_apellidos"]=$user['usr_apellidos'];
 	 $_SESSION["usr_tipo"]=$user['usr_tipo'];
 	 $_SESSION["usr_email"]=$user['usr_email'];
-	 $_SESSION["usr_id"]=$user['usr_id'];	 
-	 $_SESSION["usr_categoria"]=$user['usr_categoria'];	 
+	 $_SESSION["usr_id"]=$user['usr_id'];
+	 $_SESSION["usr_categoria"]=$user['usr_categoria'];
 	 $_SESSION["usr_perfil"]=$user['usr_perfil'];
 	 $_SESSION["obj_tipo"]='all';
 	 $_SESSION["ano"]=date('Y');

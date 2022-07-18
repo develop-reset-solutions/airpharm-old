@@ -1,7 +1,6 @@
 ####### create databases
 
 CREATE DATABASE IF NOT EXISTS `dbtest`;
-CREATE DATABASE IF NOT EXISTS `dbtime`;
 
 -- CREATE DATABASE IF NOT EXISTS `dbtest2`;
 

@@ -24,9 +24,11 @@ $row=mysql_fetch_array($result);
   <tr>
     <td colspan="2"><span class="titulos_campos">Indicador:</span> <input type="text" name="ind_nombre" value="<?php echo utf8_encode($row['ind_nombre']);?>" class="campo-doble"></td>
   </tr>
+
   <tr>
     <td colspan="2"><span class="titulos_campos">Código del indicador:</span> <input type="text" name="ind_codigo" value="<?php echo utf8_encode($row['ind_codigo']);?>" class="campo-corto"></td>
   </tr>
+
   <tr>
     <td width="50%" colspan="2"><span class="titulos_campos">Año:</span> <?php echo utf8_encode($row['oa_ano']);?></td>
   </tr>
@@ -123,7 +125,7 @@ $row=mysql_fetch_array($result);
 		$query_dl="SELECT * FROM dpo_lineas WHERE dl_oa_id=".$oa_id;
 		$result_dl=mysql_query($query_dl) or die ("No se puede ejecutar la sentencia: ".$query_dl);
 		$row_dl=mysql_fetch_array($result_dl);?>
-    
+
   <tr>
     <td><span class="titulos_campos">Peso:</span>
       <?php if($_SESSION['usr_id']==$row['ind_responsable'] or $_SESSION['usr_perfil']=='Director RRHH'){?>
@@ -146,7 +148,7 @@ $row=mysql_fetch_array($result);
     <?php echo $row['ind_grupo_individual'];}?>
       </td>
  </tr>
-	
+
   <tr>
     <td colspan="2"><span class="titulos_campos">Tipo:</span> <?php echo utf8_encode($row['obj_tipo']);?></td>
   </tr>
@@ -156,6 +158,7 @@ $row=mysql_fetch_array($result);
   <tr>
     <td colspan="2" align="center"><span class="titulos_campos">Mediciones</span></td>
   </tr>
+  
   <tr>
     <td colspan="2" align="center"><table>
         <tr class="titulo_dpo">
@@ -238,7 +241,9 @@ $row=mysql_fetch_array($result);
             <?php echo $row_dl['dl_rdo_anual'];}?></td>
         </tr>
         <?php }}?>
-      </table></td>
+      </table>
+    </td>
+
   </tr>
   <tr>
     <td colspan="4" align="center"><input type="submit" value="Guardar" class="boton-crear">

@@ -1,4 +1,10 @@
-<?php include("cabecera-index.php");?>
+<?php include("cabecera-index.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting( E_ALL );
+
+?>
 <div id="content">
 	<div class="form_ident">
     <form  id="identificacion" name="identificacion" action="/login/check_login.php" method="post">

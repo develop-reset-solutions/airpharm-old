@@ -6,9 +6,9 @@
 //$username_airfarm = "airfarm_us";
 //$password_airfarm = "Cpt39il8*";
 
-//$airfarm = mysql_pconnect($hostname_airfarm, $username_airfarm, $password_airfarm) or 
+//$airfarm = mysql_pconnect($hostname_airfarm, $username_airfarm, $password_airfarm) or
 
-//trigger_error(mysql_error(),E_USER_ERROR); 
+//trigger_error(mysql_error(),E_USER_ERROR);
 
 
 
@@ -20,9 +20,25 @@ function db_connect()
       return false;
    if (!mysql_select_db("airfarm_dpo"))
       return false;
-	  
+
    return $result;
 }
+
+
+// function db_connect(){
+//    $result = mysqli_connect("mysql_old_airpharm", "root", "root");
+//
+//    if (!$result){
+//      return false;
+//    }
+//
+//    if (!mysqli_select_db("dbtest")){
+//      return false;
+//    }
+//
+//    return $result;
+// }
+
 
 function db_result_to_array($result)
 {
@@ -35,7 +51,3 @@ function db_result_to_array($result)
 }
 
 ?>
-
-
-
-
