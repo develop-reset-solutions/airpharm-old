@@ -1,5 +1,8 @@
-sh_history
+.bash_history
 .composer
 error_docs
 logs
+.gitconfig
+.ssh/
+.viminfo
 
