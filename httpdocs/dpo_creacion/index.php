@@ -6,20 +6,22 @@ $conn=db_connect();
 ?>
 <link href="/css/style.css" rel="stylesheet" type="text/css">
 <script language="javascript">
-function alerta(ano) {
+
+function alerta( ano ){
 	var select1 = document.getElementById('usr_id');
 	//var combo = document.getElementById("producto");
 	var selected = select1.options[select1.selectedIndex].text;
     //var selectedOption = this.options[select1.selectedIndex];
-	
+
 	//var usr_id = this.options[select.usr_id];
-    
+
    //var usr_id = document.getElementById("usr_id").value;
-   if (confirm("Los datos del usuario "+selected+" del año "+ano+" si existen seran eliminados.")){ 
-       document.form_index.submit() 
-    } 
-   
+   if (confirm("Los datos del usuario "+selected+" del año "+ano+" si existen seran eliminados.")){
+       document.form_index.submit()
+    }
+
 }
+
 /*
 function alerta(ano){
 	usr_id= document.getElementById("usr_id").value;
@@ -29,7 +31,7 @@ function alerta(ano){
 	/*
 $(document).ready(function () {
 
-	
+
     $("#guardar").click(function (){
         if( $("#nombre").val() == "" ){
             alert("Tienes que introducir el nombre .");
@@ -40,7 +42,7 @@ $(document).ready(function () {
 		}else if( $("#fecha_nacimiento").val() == "" || !isValidDate($("#fecha_nacimiento").val())  ){
             alert("Tienes que introducir la fecha de nacimiento correctamente.");
             return false;
-		
+
 		}else if( $("#num_doc").val() == "" ){
             alert("Tienes que introducir el número del documento.");
             return false;
@@ -67,11 +69,11 @@ $(document).ready(function () {
             return false;
 		}else if( $("#direccion").val() == "" ){
             alert("Tienes que introducir la dirección.");
-            return false;	
+            return false;
 		}else if( $("#programa").val() == "" ){
             alert("Tienes que seleccionar un programa.");
-            return false;	
-		
+            return false;
+
         }
     });
 });*/
@@ -87,13 +89,13 @@ $(document).ready(function () {
         <td class="titulos_campos">Colaborador: </td>
         <td><select name="usr_id" id="usr_id" class="campo-largo" required>
         		<option value="">Seleccionar colaborador ...</option>
-              <?php 
+              <?php
 				if($_SESSION['usr_perfil']=='Director General' or $_SESSION['usr_perfil']=='Administrador' or $_SESSION['usr_perfil']=='Director RRHH'){
 					$query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND (usr_perfil='Usuario' OR usr_perfil='Director RRHH') ORDER BY usr_apellidos, usr_nombre ASC";
 					$result_usr=mysql_query($query_usr) or die ("No se puede ejecutar la sentencia: ".$query_usr);
 					while($row_usr=mysql_fetch_array($result_usr)){?>
               <option value="<?php echo $row_usr['usr_id'];?>"><?php echo utf8_encode($row_usr['usr_apellidos'].", ".$row_usr['usr_nombre']);?></option>
-              <?php 		
+              <?php
 						}
 				}else{
 					$query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND (usr_perfil='Usuario' OR usr_perfil='Director RRHH') ORDER BY usr_apellidos, usr_nombre ASC";
@@ -115,7 +117,7 @@ $(document).ready(function () {
 						}
 						if($es_superior){?>
               <option value="<?php echo $row_usr['usr_id'];?>"><?php echo utf8_encode($row_usr['usr_apellidos'].", ".$row_usr['usr_nombre']);?></option>
-              <?php 			
+              <?php
 					}}
                 }?>
             </select></td>
@@ -129,7 +131,7 @@ $(document).ready(function () {
 				while($row_dpo=mysql_fetch_array($result_dpo)){
 ?>
                 	<option value="<?php echo $row_dpo['dpo_id'];?>"><?php echo utf8_encode($row_dpo['usr_apellidos'].", ".$row_dpo['usr_nombre']);?></option>      <?php }?>
-            	<?php 
+            	<?php
 				$anomenos=$_SESSION['ano']-1;
 				$query_dpo="SELECT * FROM vdpo_cabeceras WHERE dpo_ano=".$anomenos." ORDER BY usr_apellidos, usr_nombre ASC";
 					$result_dpo=mysql_query($query_dpo) or die ("No se puede ejecutar la sentencia: ".$query_dpo);

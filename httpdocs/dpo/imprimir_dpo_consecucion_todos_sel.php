@@ -1,27 +1,30 @@
 <?php session_start();
+
 include("../login/sesion_start.php");
 include("../librerias/librerias.php");
 include("../cabecera.php");
 $conn=db_connect();
 $dpo_ano=$_SESSION['ano'];
+
 ?>
+
 <script language="javascript">
 <!--
-function vacio(q) {  
-	for ( i = 0; i < q.length; i++ ) {  
-		if ( q.charAt(i) != " " ) {  
-			return true  
-		}  
-	}  
-	return false  
-}  
+function vacio(q) {
+	for ( i = 0; i < q.length; i++ ) {
+		if ( q.charAt(i) != " " ) {
+			return true
+		}
+	}
+	return false
+}
 
 //comprueba direccion email
-function email(txt){  
-	//expresion regular  
-	var b=/^[^@\s]+@[^@\.\s]+(\.[^@\.\s]+)+$/; 
+function email(txt){
+	//expresion regular
+	var b=/^[^@\s]+@[^@\.\s]+(\.[^@\.\s]+)+$/;
 	return b.test(txt);
-}  
+}
 
 function Valida( formulario ) {
 	var error;
@@ -36,18 +39,18 @@ function Valida( formulario ) {
 		alert (error);
 	}
 	return estado;
-} 
+}
 function EliminarUsuario(dl_id){
 	if (confirm('Seguro que desea desasociar este usuario')){
 		pagina="modify_usuario.php?dl_id="+dl_id+"&dpo_id=<?php echo $dpo_id;?>";
 		window.location=pagina;
 	}
-} 
+}
 function preguntar(){
 	if (confirm('Seguro que desea desasociar los usuarios seleccionados')){
 		document.desaso.submit();
 	}
-} 
+}
 
 function AnadirUsuario(oau_oa_id){
 	if(document.getElementById('oa_usr_id').value=='all'){
@@ -61,7 +64,7 @@ function AnadirUsuario(oau_oa_id){
 		pagina="insert_usuario.php?oau_usr_id="+oau_usr_id+"&oau_oa_id="+oau_oa_id+"&dpo_id=<?php echo $dpo_id;?>";
 		window.location=pagina;
 	}
-} 
+}
 
 
 //-->
@@ -117,7 +120,7 @@ function AnadirUsuario(oau_oa_id){
 								}
 							}?>
                     	</optgroup>
-                    
+
                   	</select>
                   	<input type="submit" class="boton-crear" name="button" id="button" value="Generar" style="font-size:10px; height:19px;" onClick="javascript:AnadirUsuario('<?php echo $oa_id;?>');"></td>
               </tr>

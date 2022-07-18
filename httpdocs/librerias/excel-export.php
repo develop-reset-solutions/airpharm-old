@@ -26,7 +26,7 @@ class ExcelExport {
        $this->file .= pack("ssssss", 0x204, 8 + $L, $row, $col, 0x0, $L);
        $this->file .= $value;
    }
-   
+
    function writeCell($value,$row,$col) {
       if(is_numeric($value)) {
          $this->__writeNum($row,$col,$value);
@@ -34,7 +34,7 @@ class ExcelExport {
          $this->__writeString($row,$col,$value);
       }
    }
-   
+
    function addRow($data,$row=null) {
       //If the user doesn't specify a row, use the internal counter.
       if(!isset($row)) {
@@ -47,18 +47,21 @@ class ExcelExport {
       }
    }
 
-   function download($filename) {
+   function download( $filename ){
       header("Pragma: public");
       header("Expires: 0");
+      
       header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
       header("Content-Type: application/force-download");
       header("Content-Type: application/octet-stream");
-      header("Content-Type: application/download");;
+
+      header("Content-Type: application/download");
       header("Content-Disposition: attachment;filename=$filename ");
       header("Content-Transfer-Encoding: binary ");
+
       $this->write();
    }
-   
+
    function write() {
       echo $file = $this->file.$this->__EOF();
    }
