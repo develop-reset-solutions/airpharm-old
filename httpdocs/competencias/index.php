@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../login/sesion_start.php");
 include("../login/sesion_start_rrhh.php");
@@ -26,35 +26,35 @@ if ($_SESSION['usr_perfil']=='Director RRHH'){
           <td class="celda-home"><input type="button" class="boton-principal2" value="Diccionario" onClick="document.location.href = '/competencias/diccionario/index.php'"></td>
           <td class="celda-home"><input type="button" class="boton-principal2" value="Evaluación Competencial" onClick="document.location.href = '/competencias/evaluacion/index.php'"></td>
 		 
-		   
+
 
           <!--<td class="celda-home"><input type="button" class="boton-principal" value="Indicadores <?php echo $_SESSION['ano'];?>" onClick="document.location.href = 'medicion_objetivos'"></td>-->
        </tr>
-         
-		
-		
-		
+
+
+
+
         <!--
        <tr>
        <?php if($_SESSION['usr_perfil']=='Administrador' or $_SESSION['usr_categoria']==utf8_decode('Dirección') and $_SESSION['ano']>=2016){?><td class="celda-home"><input type="button" class="boton-principal" value="Crear/Duplicar DPO" onClick="document.location.href = 'dpo_creacion'"></td><?php }?>-->
        <tr>
- <?php if($_SESSION['usr_perfil']=='Administrador' or $_SESSION['usr_perfil']=='Director RRHH' or $_SESSION['usr_categoria']==utf8_decode('Dirección')){?> 
+ <?php if($_SESSION['usr_perfil']=='Administrador' or $_SESSION['usr_perfil']=='Director RRHH' or $_SESSION['usr_categoria']==utf8_decode('Dirección')){?>
       <td class="celda-home"><input type="button" class="boton-principal2 texto_verde" value="Informes" onClick="document.location.href = 'informes'"></td><?php }?>
 		   <td></td>
 		    <td class="celda-home"><input type="button" class="boton-principal2"   value="Eval. Comp. Libre" onClick="document.location.href = '/competencias/evaluacion/index_libre.php'"></td>
-		   
-		   
+
+
 </tr>
      </table></center>
   </div>
   <div class="tabla_apartados">
   </div>
 </div>
-<?php 
+<?php
 } else {
 	header('Location: /competencias/evaluacion/index.php');
 	}
 ?>
-<footer> 
+<footer>
 </footer>
 </body></html>
