@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../login/sesion_start.php");
 include("../librerias/librerias.php");
@@ -49,7 +49,7 @@ $total_anual=0;
   <div class="cabecera_apartados">
     <div class="filtros">
       <form method="post" action="#">
-        <table align="center" width="100%">	
+        <table align="center" width="100%">
         <tr>
           <td colspan="7">DPO de <?php echo utf8_encode($row['usr_nombre']." ".$row['usr_apellidos']);?> (<?php echo $dpo_ano;?>)</td>
         <tr>
@@ -59,7 +59,7 @@ $total_anual=0;
           <td class="texto_10"><input type="button" onClick="window.open('imprimir_dpo_consecucion.php?dpo_id=<?php echo $row['dpo_id'];?>&valor_sim=<?php echo $valor_sim;?>','_newtab')" value="Imprimir consecución" class="texto_10" ></td>
           <td class="texto_10">Valor:&nbsp;
             <input type="text" name="valor_sim" id="valor_sim" value="<?php echo $valor_sim;?>" class="texto_10" style="width:50px;">
-            
+
 			  <input type="hidden" name="dpo_usr_id" id="dpo_usr_id" value="<?php echo $dpo_usr_id;?>">
             &nbsp;
             <input type="submit" name="simular" id="simular" value="Simular" class="texto_10"/></td>
@@ -67,7 +67,7 @@ $total_anual=0;
           <td class="texto_10"> Colaborador:
             <select name="dpo_usr_id" id="dpo_usr_id" class="texto_10">
               <option value="<?php echo $dpo_usr_id;?>"><?php echo utf8_encode($row['usr_apellidos'].", ".$row['usr_nombre']);?></option>
-              <?php 
+              <?php
 				if($_SESSION['usr_perfil']=='Director General' or $_SESSION['usr_perfil']=='Administrador' or $_SESSION['usr_perfil']=='Director RRHH'){
 					$query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND (usr_perfil='Usuario' OR usr_perfil='Director RRHH') ORDER BY usr_apellidos, usr_nombre ASC";
 					$result_usr=mysql_query($query_usr) or die ("No se puede ejecutar la sentencia: ".$query_usr);
@@ -111,7 +111,7 @@ $total_anual=0;
 					}}
                 }?>
             </select></td>
-			
+
                <td><input type="submit" name="filtrar" id="filtrar" value="Filtrar" class="texto_10"/></td>
           <!--            <td><input name="reset" type="submit" id="reset" value="Resetear" class="texto_10" /></td>
 --> </tr>
@@ -161,7 +161,7 @@ $total_anual=0;
         <?php while($row_lin=mysql_fetch_array($result_lin)){?>
         <tr class="filas_subtotal">
           <td class="num_lin"><?php echo $n_lin; $n_lin++;?></td>
-          <td class="celdas_subtotal"><?php 
+          <td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['ind_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 		$num_ooe=mysql_num_rows($result_ooe);
@@ -202,7 +202,7 @@ $total_anual=0;
           <td class="numerica celdas_subtotal"><?php echo utf8_encode($row_lin['ind_meta_un_abreviatura']);?></td>
           <td class="titulo_grupo"></td>
 			<!-- Horquilla MAX -->
-          <td class="numerica celdas_subtotal"><?php echo number_format($row_lin['oa_horquilla_min'],2,',','.');?></td> 
+          <td class="numerica celdas_subtotal"><?php echo number_format($row_lin['oa_horquilla_min'],2,',','.');?></td>
 			<!-- Horquilla MAX -->
           <td class="numerica celdas_subtotal"><?php echo number_format($row_lin['oa_horquilla_max'],2,',','.');?></td>
 			<!-- Peso -->
@@ -250,7 +250,7 @@ $total_anual=0;
         <tr>
           <td colspan="20"></td>
         </tr>
-        <?php 
+        <?php
  }
  		$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (obj_tipo LIKE '".utf8_decode('Para el Comité de Dirección')."' OR obj_tipo LIKE '".utf8_decode('Mandos Intermedios')."') ORDER BY dl_peso DESC, obj_descripcion ASC";
 		$result_lin=mysql_query($query_lin) or die ("No se puede ejecutar la sentencia: ".$query_lin);
@@ -258,7 +258,7 @@ $total_anual=0;
 		if($num_lin){
 		?>
         <tr class="titulo_grupo">
-          <td colspan="10" style="text-align:left;"><?php 
+          <td colspan="10" style="text-align:left;"><?php
 		if(utf8_encode($row['usr_categoria'])=='Dirección'){?>
             A nivel de comité de dirección
             <?php }else{?>
@@ -295,14 +295,14 @@ $total_anual=0;
 		while($row_lin=mysql_fetch_array($result_lin)){?>
         <tr class="filas_subtotal">
           <td class="num_lin"><?php echo $n_lin; $n_lin++;?></td>
-          <td class="celdas_subtotal"><?php 
+          <td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['ind_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 		$num_ooe=mysql_num_rows($result_ooe);
 					$n=1;
 					while($row_ooe=mysql_fetch_array($result_ooe)){
 			$query_oe="SELECT * FROM objetivos_estrategicos WHERE oe_id=".$row_ooe['ooe_oe_id'];
-			$result_oe=mysql_query($query_oe) or die ("No se puede ejecutar la sentencia: ".$query_oe);
+			$result_oe=mysql_query($query_oe) or die ("No se puede ejecutar la sentencia: " . $query_oe );
 			$row_oe=mysql_fetch_array($result_oe);
 			echo $row_oe['oe_codigo'];
 			if($n>0 and $n<$num_ooe){
@@ -356,10 +356,10 @@ $total_anual=0;
             <input class="campo-dpo" name="dl_rdo_anual_<?php echo $row_lin['dl_id'];?>" value="<?php echo $row_lin['dl_rdo_anual'];?>" />
             <?php }else{ echo $row_lin['dl_rdo_anual'];}$total_anual+=por_obtencion($row_lin['dl_id'],'Anual');?></td>
           <!-- <td class="numerica celdas_subtotal"><?php // echo number_format(por_obtencion($row_lin['dl_id']),2,',','.');$total_por_sim+=por_obtencion($row_lin['dl_id']);?></td> -->
-		  
+
 			<!-- Simulacion final  -->
-		  <td class="numerica celdas_subtotal"><?php echo number_format(sim_anual($row_lin['dl_id']),2,',','.');$total_por_sim+=por_obtencion($row_lin['dl_id']);?></td> 
-			
+		  <td class="numerica celdas_subtotal"><?php echo number_format(sim_anual($row_lin['dl_id']),2,',','.');$total_por_sim+=por_obtencion($row_lin['dl_id']);?></td>
+
 			<!-- Simulacion €  -->
           <td class="numerica celdas_subtotal"><?php $valor = por_obtencion($row_lin['dl_id'])*$valor_sim/100; echo number_format($valor,2,',','.').'€';$total_sim+=por_obtencion($row_lin['dl_id'])*$valor_sim/100;?></td>
         </tr>
@@ -367,7 +367,7 @@ $total_anual=0;
         <tr>
           <td colspan="20"></td>
         </tr>
-        <?php 
+        <?php
 }
 		$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (obj_tipo LIKE '".utf8_decode('de departamento')."' OR obj_tipo LIKE '".utf8_decode('Proyectos')."') ORDER BY dl_peso DESC, obj_descripcion ASC";
 		$result_lin=mysql_query($query_lin) or die ("No se puede ejecutar la sentencia: ".$query_lin);
@@ -407,7 +407,7 @@ $total_anual=0;
 		while($row_lin=mysql_fetch_array($result_lin)){?>
         <tr class="filas_subtotal">
           <td class="num_lin"><?php echo $n_lin; $n_lin++;?></td>
-          <td class="celdas_subtotal"><?php 
+          <td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['ind_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 		$num_ooe=mysql_num_rows($result_ooe);
@@ -467,10 +467,10 @@ $total_anual=0;
           <td class="numerica celdas_subtotal"><?php if($row_lin['ind_mide']==$_SESSION['usr_id'] or ($row_lin['ind_mide']==9999 and ($_SESSION['usr_id']<>$dpo_usr_id or utf8_encode($_SESSION['usr_categoria'])=='Dirección'))){?>
             <input class="campo-dpo" name="dl_rdo_anual_<?php echo $row_lin['dl_id'];?>" value="<?php echo $row_lin['dl_rdo_anual'];?>" />
             <?php }else{ echo $row_lin['dl_rdo_anual'];}$total_anual+=por_obtencion($row_lin['dl_id'],'Anual');?></td>
-          
+
 			<!-- Simulacion final  -->
 			<td class="numerica celdas_subtotal"><?php echo number_format(sim_anual($row_lin['dl_id']),2,',','.');$total_por_sim+=por_obtencion($row_lin['dl_id']);?></td>
-			
+
 			<!-- Simulacion €  -->
 			<td class="numerica celdas_subtotal"><?php $valor = por_obtencion($row_lin['dl_id'])*$valor_sim/100; echo number_format($valor,2,',','.').'€';$total_sim+=por_obtencion($row_lin['dl_id'])*$valor_sim/100;?></td>
 		  </tr>
@@ -517,7 +517,7 @@ $total_anual=0;
 		while($row_lin=mysql_fetch_array($result_lin)){?>
         <tr class="filas_subtotal">
           <td class="num_lin"><?php echo $n_lin; $n_lin++;?></td>
-          <td class="celdas_subtotal"><?php 
+          <td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['ind_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 		$num_ooe=mysql_num_rows($result_ooe);
@@ -577,10 +577,10 @@ $total_anual=0;
           <td class="numerica celdas_subtotal"><?php if($row_lin['ind_mide']==$_SESSION['usr_id'] or ($row_lin['ind_mide']==9999 and ($_SESSION['usr_id']<>$dpo_usr_id or utf8_encode($_SESSION['usr_categoria'])=='Dirección'))){?>
             <input class="campo-dpo" name="dl_rdo_anual_<?php echo $row_lin['dl_id'];?>" value="<?php echo $row_lin['dl_rdo_anual'];?>" />
             <?php }else{ echo $row_lin['dl_rdo_anual'];}$total_anual+=por_obtencion($row_lin['dl_id'],'Anual');?></td>
-          
+
 			<!-- Simulacion final  -->
 			<td class="numerica celdas_subtotal"><?php echo number_format(sim_anual($row_lin['dl_id']),2,',','.');$total_por_sim+=por_obtencion($row_lin['dl_id']);?></td>
-		
+
 			<!-- Simulacion €  -->
 			<td class="numerica celdas_subtotal"><?php $valor = por_obtencion($row_lin['dl_id'])*$valor_sim/100; echo number_format($valor,2,',','.').'€';$total_sim+=por_obtencion($row_lin['dl_id'])*$valor_sim/100;?></td>
 
@@ -642,8 +642,8 @@ $total_anual=0;
             </form>
             <?php }?>
               <form action="insert_comentarios.php" method="post">
-            
-            
+
+
               <td class="celdas_subtotal"><input type="hidden" name="com_dpo_id" value="<?php echo $row['dpo_id'];?>">
                 <input type="hidden" name="com_periodo" value="Enero-Marzo">
                 <input name="com_n_lin" type="text" class="campo-ncomentario numerica" value="<?php echo $row_com['com_n_lin'];?>"></td>
@@ -675,8 +675,8 @@ $total_anual=0;
             </form>
             <?php }?>
               <form action="insert_comentarios.php" method="post">
-            
-            
+
+
               <td class="celdas_subtotal"><input type="hidden" name="com_dpo_id" value="<?php echo $row['dpo_id'];?>">
                 <input type="hidden" name="com_periodo" value="Abril-Junio">
                 <input name="com_n_lin" type="text" class="campo-ncomentario numerica" value="<?php echo $row_com['com_n_lin'];?>"></td>
@@ -708,8 +708,8 @@ $total_anual=0;
             </form>
             <?php }?>
               <form action="insert_comentarios.php" method="post">
-            
-            
+
+
               <td class="celdas_subtotal"><input type="hidden" name="com_dpo_id" value="<?php echo $row['dpo_id'];?>">
                 <input type="hidden" name="com_periodo" value="Julio-Septiembre">
                 <input name="com_n_lin" type="text" class="campo-ncomentario numerica" value="<?php echo $row_com['com_n_lin'];?>"></td>
@@ -741,7 +741,7 @@ $total_anual=0;
             </form>
             <?php }?>
               <form action="insert_comentarios.php" method="post">
-            
+
             <tr>
               <td class="celdas_subtotal"><input type="hidden" name="com_dpo_id" value="<?php echo $row['dpo_id'];?>">
                 <input type="hidden" name="com_periodo" value="Octubre-Diciembre">
@@ -774,7 +774,7 @@ $total_anual=0;
             </form>
             <?php }?>
               <form action="insert_comentarios.php" method="post">
-            
+
             <tr>
               <td class="celdas_subtotal"><input type="hidden" name="com_dpo_id" value="<?php echo $row['dpo_id'];?>">
                 <input type="hidden" name="com_periodo" value="Anuales">

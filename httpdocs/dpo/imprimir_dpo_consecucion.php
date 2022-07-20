@@ -1,5 +1,5 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<?php 
+<?php
 include("../login/sesion_start.php");
 include("../librerias/librerias.php");
 require('../fpdf/fpdf.php');
@@ -30,26 +30,24 @@ $fecha=date('d/m/Y');
 
 class PDF extends FPDF
 {
-function Header()
-{
-		global $valor_sim;
-		global $nombre;
-    	$this->SetFont('Arial','B',10);
+function Header(){
+		global $valor_sim, $nombre;
+
+  	$this->SetFont('Arial','B',10);
 		$this->SetTextColor(0);
-    	//Título
-    	$this->Cell(100,4,'DPO de '.$nombre,'B');
-    	$this->Cell(0,4,'Importe de simulación: '.number_format($valor_sim,0,',','.').' €','B',0,'R');
+  	$this->Cell(100,4,'DPO de '.$nombre,'B');
+  	$this->Cell(0,4,'Importe de simulaciï¿½n: '.number_format($valor_sim,0,',','.').' ï¿½','B',0,'R');
 		$this->Ln();
-    	$this->SetFont('Arial','B',10);
+  	$this->SetFont('Arial','B',10);
 }
-function Footer()
-{
+function Footer(){
 	global $fecha;
+
 	$this->SetTextColor(0,0,0);
-   	$this->SetY(-15);
+ 	$this->SetY(-15);
 	$this->SetFont('Arial','B',8);
 	$this->Cell(120,4,'Fecha informe: '.$fecha,'T',0,'L');
-    $this->Cell(0,4,'Página: '.$this->PageNo().'/{nb}','T',0,'R');
+  $this->Cell(0,4,'Pï¿½gina: '.$this->PageNo().'/{nb}','T',0,'R');
 }
 
 }
@@ -58,15 +56,15 @@ $pdf=new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('L');
 $n_lin=1;
-$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$dpo_id." AND obj_tipo LIKE 'Objetivo de compañia' ORDER BY dl_peso DESC, obj_descripcion ASC";
+$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$dpo_id." AND obj_tipo LIKE 'Objetivo de compaï¿½ia' ORDER BY dl_peso DESC, obj_descripcion ASC";
 $result_lin=mysql_query($query_lin) or die ("No se puede ejecutar la sentencia: ".$query_lin);
 $num_lin=mysql_num_rows($result_lin);
 if($num_lin){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetTextColor(255);
 	$pdf->SetFillColor(0);
-	$pdf->Cell(197,4,'A nivel de compañia',0,0,'L',true);
-	$pdf->Cell(10,4,$peso['Objetivo de Compañía'].' %',0,0,'R',true);
+	$pdf->Cell(197,4,'A nivel de compaï¿½ia',0,0,'L',true);
+	$pdf->Cell(10,4,$peso['Objetivo de Compaï¿½ï¿½a'].' %',0,0,'R',true);
 	$pdf->Cell(0,4,'',0,1,'R',true);
 	$pdf->SetFillColor(120);
 	$pdf->Cell(4,4,'',0,0,'C',true);
@@ -83,12 +81,12 @@ if($num_lin){
 	$pdf->Cell(10,4,'T4',0,0,'C',true);
 	$pdf->Cell(10,4,'Final',0,0,'C',true);
 	$pdf->Cell(20,4,'Simulacion',0,1,'C',true);
-	
+
 	$yfinal=$pdf->y;
 }
 	while($row_lin=mysql_fetch_array($result_lin)){
 		if($pdf->y>170){
-			$pdf->AddPage('L');			
+			$pdf->AddPage('L');
 			$yfinal=14;
 		}
 		$pdf->y=$yfinal;
@@ -189,7 +187,7 @@ if($num_lin){
 		}
 		$pdf->x=277;
 		$pdf->y=$yorigen;
-		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'€');
+		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'ï¿½');
 		if($pdf->y>$yfinal){
 			$yfinal=$pdf->y;
 		}
@@ -256,20 +254,20 @@ if($num_lin){
 		$pdf->Cell(0,$altura,number_format(((por_obtencion($row_lin['dl_id'])*$valor_sim)/100),0,',','.'),1,1,'R',true);
 		$pdf->SetFillColor(231,229,227);
  }
-$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (obj_tipo LIKE 'Para el Comité de Dirección' OR obj_tipo LIKE '".utf8_decode('Mandos Intermedios')."') ORDER BY dl_peso DESC, obj_descripcion ASC";
+$query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (obj_tipo LIKE 'Para el Comitï¿½ de Direcciï¿½n' OR obj_tipo LIKE '".utf8_decode('Mandos Intermedios')."') ORDER BY dl_peso DESC, obj_descripcion ASC";
 		$result_lin=mysql_query($query_lin) or die ("No se puede ejecutar la sentencia: ".$query_lin);
 		$num_lin=mysql_num_rows($result_lin);
 		if($num_lin){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetTextColor(255);
 	$pdf->SetFillColor(0);
-		if($row['usr_categoria']=='Dirección'){
-          $tipo="A nivel de comité de dirección";
+		if($row['usr_categoria']=='Direcciï¿½n'){
+          $tipo="A nivel de comitï¿½ de direcciï¿½n";
            }else{
           $tipo="A nivel de Mandos Intermedios";
           }
 	$pdf->Cell(197,4,$tipo,0,0,'L',true);
-	$pdf->Cell(10,4,$peso['Para el Comité de Dirección']+$peso['Mandos Intermedios'].' %',0,0,'R',true);
+	$pdf->Cell(10,4,$peso['Para el Comitï¿½ de Direcciï¿½n']+$peso['Mandos Intermedios'].' %',0,0,'R',true);
 	$pdf->Cell(0,4,'',0,1,'R',true);
 	$pdf->SetFillColor(120);
 	$pdf->Cell(4,4,'',0,0,'C',true);
@@ -286,12 +284,12 @@ $query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (ob
 	$pdf->Cell(10,4,'T4',0,0,'C',true);
 	$pdf->Cell(10,4,'Final',0,0,'C',true);
 	$pdf->Cell(20,4,'Simulacion',0,1,'C',true);
-	
+
 	$yfinal=$pdf->y;
 }
 	while($row_lin=mysql_fetch_array($result_lin)){
 		if($pdf->y>170){
-			$pdf->AddPage('L');			
+			$pdf->AddPage('L');
 			$yfinal=14;
 		}
 		$pdf->y=$yfinal;
@@ -392,7 +390,7 @@ $query_lin="SELECT * FROM vdpo_lineas WHERE dl_dpo_id=".$row['dpo_id']." AND (ob
 		}
 		$pdf->x=277;
 		$pdf->y=$yorigen;
-		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'€');
+		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'ï¿½');
 		if($pdf->y>$yfinal){
 			$yfinal=$pdf->y;
 		}
@@ -485,12 +483,12 @@ if($num_lin){
 	$pdf->Cell(10,4,'T4',0,0,'C',true);
 	$pdf->Cell(10,4,'Final',0,0,'C',true);
 	$pdf->Cell(20,4,'Simulacion',0,1,'C',true);
-	
+
 	$yfinal=$pdf->y;
 }
 	while($row_lin=mysql_fetch_array($result_lin)){
 		if($pdf->y>170){
-			$pdf->AddPage('L');			
+			$pdf->AddPage('L');
 			$yfinal=14;
 		}
 		$pdf->y=$yfinal;
@@ -591,7 +589,7 @@ if($num_lin){
 		}
 		$pdf->x=277;
 		$pdf->y=$yorigen;
-		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'€');
+		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'ï¿½');
 		if($pdf->y>$yfinal){
 			$yfinal=$pdf->y;
 		}
@@ -684,12 +682,12 @@ if($num_lin){
 	$pdf->Cell(10,4,'T4',0,0,'C',true);
 	$pdf->Cell(10,4,'Final',0,0,'C',true);
 	$pdf->Cell(20,4,'Simulacion',0,1,'C',true);
-	
+
 	$yfinal=$pdf->y;
 }
 	while($row_lin=mysql_fetch_array($result_lin)){
 		if($pdf->y>170){
-			$pdf->AddPage('L');			
+			$pdf->AddPage('L');
 			$yfinal=14;
 		}
 		$pdf->y=$yfinal;
@@ -790,7 +788,7 @@ if($num_lin){
 		}
 		$pdf->x=277;
 		$pdf->y=$yorigen;
-		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'€');
+		$pdf->MultiCell(0,4,number_format((por_obtencion($row_lin['dl_id'])*$valor_sim)/100,2,',','.').'ï¿½');
 		if($pdf->y>$yfinal){
 			$yfinal=$pdf->y;
 		}
@@ -939,4 +937,3 @@ if($num_lin){
 	}
 $pdf->Output();
 ?>
-

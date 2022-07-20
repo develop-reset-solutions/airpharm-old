@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../login/sesion_start.php");
 include("../librerias/librerias.php");
@@ -39,7 +39,7 @@ function EliminarLinea(dl_id,dpo_ano,dpo_usr_id){
 		pagina="del_linea.php?dl_id="+dl_id+"&dpo_ano="+dpo_ano+"&dpo_usr_id="+dpo_usr_id;
 		window.location=pagina;
 	}
-} 
+}
 </script>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <div id="content">
@@ -66,7 +66,7 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 				if($num_dpo){
 				?>
                 <option value="<?php echo $row_usr['usr_id'];?>"<?php if($row_usr['usr_id']==$dpo_usr_id){?> selected="selected"<?php }?>><?php echo utf8_encode($row_usr['usr_apellidos'].", ".$row_usr['usr_nombre']);?></option>
-                <?php 
+                <?php
 				}
 				}?>
               </select></td>
@@ -108,7 +108,7 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 		$num_lin=mysql_num_rows($result_lin);
 		while($row_lin=mysql_fetch_array($result_lin)){?>
       		<tr class="filas_subtotal">
-        		<td class="celdas_subtotal"><?php 
+        		<td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['oa_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 					$n=1;
@@ -127,19 +127,19 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 						$n++;
 					}?>
         </td>
-             	
+
         		<td class="celdas_subtotal"><?php echo utf8_encode($row_lin['obj_descripcion']);?></td>
-<?php 
+<?php
 					$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 					$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
-					$num_oi=mysql_num_rows($result_oi);      ?>  		
+					$num_oi=mysql_num_rows($result_oi);      ?>
                     <td class="celdas_subtotal <?php if(!$num_oi){?>celdas_vacias<?php }?>">
 					<?php while($row_oi=mysql_fetch_array($result_oi)){
 						echo $row_oi['ind_codigo']."<br>";
 					}?>
               	</td>
         		<td class="celdas_subtotal"><?php
-					if($num_oi){ 
+					if($num_oi){
 						$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 						$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
 						$num_oi=mysql_num_rows($result_oi);
@@ -175,7 +175,7 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
         <td colspan="10"></td>
       </tr>
       <tr class="titulo_grupo">
-        <td colspan="8" style="text-align:left;"><?php 
+        <td colspan="8" style="text-align:left;"><?php
 		if(utf8_encode($row['usr_categoria'])=='Comité de dirección'){?>
           A nivel de comité de dirección
           <?php }else{?>
@@ -200,24 +200,24 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 		$num_lin=mysql_num_rows($result_lin);
 		while($row_lin=mysql_fetch_array($result_lin)){?>
       <tr class="filas_subtotal">
-        <td class="celdas_subtotal"><?php 
+        <td class="celdas_subtotal"><?php
 		$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['oa_obj_id']." ORDER BY oe_codigo";
 		$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 		while($row_ooe=mysql_fetch_array($result_ooe)){
 			echo $row_ooe['oe_codigo']."<br>";
 		}?></td>
         <td class="celdas_subtotal"><?php echo utf8_encode($row_lin['obj_descripcion']);?></td>
-<?php 
+<?php
 					$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 					$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
-					$num_oi=mysql_num_rows($result_oi);      ?>  		
+					$num_oi=mysql_num_rows($result_oi);      ?>
                     <td class="celdas_subtotal <?php if(!$num_oi){?>celdas_vacias<?php }?>">
 					<?php while($row_oi=mysql_fetch_array($result_oi)){
 						echo $row_oi['ind_codigo']."<br>";
 					}?>
               	</td>
         <td class="celdas_subtotal"><?php
-		if($num_oi){ 
+		if($num_oi){
 			$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 			$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
 			$num_oi=mysql_num_rows($result_oi);
@@ -273,7 +273,7 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 		$num_lin=mysql_num_rows($result_lin);
 		while($row_lin=mysql_fetch_array($result_lin)){?>
       		<tr class="filas_subtotal">
-        		<td class="celdas_subtotal"><?php 
+        		<td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['oa_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 					while($row_ooe=mysql_fetch_array($result_ooe)){
@@ -281,17 +281,17 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 					}?>
              	</td>
         		<td class="celdas_subtotal"><?php echo utf8_encode($row_lin['obj_descripcion']);?></td>
-<?php 
+<?php
 					$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 					$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
-					$num_oi=mysql_num_rows($result_oi);      ?>  		
+					$num_oi=mysql_num_rows($result_oi);      ?>
                     <td class="celdas_subtotal <?php if(!$num_oi){?>celdas_vacias<?php }?>">
 					<?php while($row_oi=mysql_fetch_array($result_oi)){
 						echo $row_oi['ind_codigo']."<br>";
 					}?>
               	</td>
         		<td class="celdas_subtotal"><?php
-					if($num_oi){ 
+					if($num_oi){
 						$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 						$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
 						$num_oi=mysql_num_rows($result_oi);
@@ -347,7 +347,7 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 		$num_lin=mysql_num_rows($result_lin);
 		while($row_lin=mysql_fetch_array($result_lin)){?>
       		<tr class="filas_subtotal">
-        		<td class="celdas_subtotal"><?php 
+        		<td class="celdas_subtotal"><?php
 					$query_ooe="SELECT * FROM vobjetivos_objetivos_estrategicos WHERE ooe_obj_id=".$row_lin['oa_obj_id']." ORDER BY oe_codigo";
 					$result_ooe=mysql_query($query_ooe) or die ("No se puede ejecutar la sentencia: ".$query_ooe);
 					while($row_ooe=mysql_fetch_array($result_ooe)){
@@ -355,17 +355,17 @@ $query_usr="SELECT * FROM usuarios WHERE usr_baja=0 AND usr_superior_id=".$_SESS
 					}?>
              	</td>
         		<td class="celdas_subtotal"><?php echo utf8_encode($row_lin['obj_descripcion']);?></td>
-<?php 
+<?php
 					$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 					$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
-					$num_oi=mysql_num_rows($result_oi);      ?>  		
+					$num_oi=mysql_num_rows($result_oi);      ?>
                     <td class="celdas_subtotal <?php if(!$num_oi){?>celdas_vacias<?php }?>">
 					<?php while($row_oi=mysql_fetch_array($result_oi)){
 						echo $row_oi['ind_codigo']."<br>";
 					}?>
               	</td>
         		<td class="celdas_subtotal"><?php
-					if($num_oi){ 
+					if($num_oi){
 						$query_oi="SELECT * FROM vobjetivos_indicadores WHERE oi_obj_id=".$row_lin['oa_obj_id']." ORDER BY ind_codigo";
 						$result_oi=mysql_query($query_oi) or die ("No se puede ejecutar la sentencia: ".$query_oi);
 						$num_oi=mysql_num_rows($result_oi);

@@ -3,8 +3,8 @@
 include("../login/sesion_start.php");
 include("../librerias/librerias.php");
 include("../cabecera.php");
-$conn=db_connect();
-$dpo_ano=$_SESSION['ano'];
+$conn    = db_connect();
+$dpo_ano = $_SESSION['ano'];
 
 ?>
 
